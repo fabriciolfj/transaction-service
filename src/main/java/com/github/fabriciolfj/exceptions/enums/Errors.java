@@ -4,7 +4,8 @@ import java.util.ResourceBundle;
 
 public enum Errors {
 
-    ERROR_BUSINESS;
+    ERROR_BUSINESS,
+    TYPE_PAYMENT_NOTFOUND;
 
     public String toMessage() {
         var bundle = ResourceBundle.getBundle("messages/exceptions");

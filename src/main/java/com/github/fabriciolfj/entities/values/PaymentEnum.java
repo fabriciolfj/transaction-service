@@ -1,16 +1,18 @@
 package com.github.fabriciolfj.entities.values;
 
 import com.github.fabriciolfj.exceptions.BusinessException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.stream.Stream;
 
+@Getter
 @RequiredArgsConstructor
 public enum PaymentEnum {
 
-    PIX("pix"),
-    CARD("card"),
-    TICKET("ticket");
+    TRANSFER("Transfer"),
+    CARD("Card"),
+    TICKET("Ticket");
 
     private final String describe;
 

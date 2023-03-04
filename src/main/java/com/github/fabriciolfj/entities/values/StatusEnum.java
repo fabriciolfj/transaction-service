@@ -1,10 +1,12 @@
 package com.github.fabriciolfj.entities.values;
 
 import com.github.fabriciolfj.exceptions.BusinessException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.stream.Stream;
 
+@Getter
 @RequiredArgsConstructor
 public enum StatusEnum {
 
