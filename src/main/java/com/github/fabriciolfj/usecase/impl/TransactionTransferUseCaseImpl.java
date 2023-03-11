@@ -2,8 +2,8 @@ package com.github.fabriciolfj.usecase.impl;
 
 
 import com.github.fabriciolfj.entities.Transaction;
-import com.github.fabriciolfj.adapters.gateway.TransactionSaveGateway;
 import com.github.fabriciolfj.usecase.TransactionCreateUseCase;
+import com.github.fabriciolfj.usecase.TransactionProcessUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,11 +13,11 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class TransactionTransferUseCaseImpl implements TransactionCreateUseCase {
 
-    private final TransactionSaveGateway gateway;
+    private final TransactionProcessUseCase transactionProcessUseCase;
 
     @Override
     public Transaction execute(final Transaction transaction) {
         log.info("transaction transfer create started, to code {}", transaction.code());
-        return gateway.process(transaction);
+        return transactionProcessUseCase.execute(transaction);
     }
 }
