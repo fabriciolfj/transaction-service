@@ -38,3 +38,11 @@ nb-configuration.xml
 
 # Local environment
 .env
+
+terraform/.terraform.lock.hcl
+
+terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/4.59.0/darwin_amd64/
+
+*.tfstate
+
+*.backup

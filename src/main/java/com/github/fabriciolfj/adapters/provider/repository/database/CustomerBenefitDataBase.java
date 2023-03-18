@@ -1,37 +1,31 @@
 package com.github.fabriciolfj.adapters.provider.repository.database;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.github.fabriciolfj.adapters.gateway.CustomerBenefitFindGateway;
-import com.github.fabriciolfj.adapters.gateway.CustomerBenefitSaveGateway;
-import com.github.fabriciolfj.adapters.gateway.CustomerBenefitUpdateGateway;
 import com.github.fabriciolfj.adapters.provider.repository.converter.CustomerBenefitDataConverter;
 import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
 import com.github.fabriciolfj.entities.values.CustomerBenefit;
 import lombok.extern.slf4j.Slf4j;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.persistence.LockModeType;
+import javax.inject.Inject;
 import java.util.Optional;
 
 @ApplicationScoped
 @Slf4j
-public class CustomerBenefitDataBase implements CustomerBenefitFindGateway, CustomerBenefitSaveGateway, CustomerBenefitUpdateGateway {
+public class CustomerBenefitDataBase implements CustomerBenefitFindGateway {
+
+    @Inject
+    private DynamoDBMapper dynamoDBMapper;
 
     @Override
     public Optional<CustomerBenefit> process(final String code) {
-        log.info("query customer by code {}", code);
-        return CustomerBenefitData.find("code", code).withLock(LockModeType.OPTIMISTIC).firstResultOptional()
-                .map(value -> CustomerBenefitDataConverter.toEntity((CustomerBenefitData) value));
+        try {
+           return Optional.ofNullable(dynamoDBMapper.load(CustomerBenefitData.class, code))
+                    .map(CustomerBenefitDataConverter::toEntity);
+        } catch (Exception e) {
+            log.error("fail find customer {}, details: {}", code, e.getMessage());
+            return Optional.empty();
+        }
     }
 
-    @Override
-    public void process(final CustomerBenefit customer) {
-        var data = CustomerBenefitDataConverter.toData(customer);
-        data.persistAndFlush();
-    }
-
-    @Override
-    public void processUpdate(final CustomerBenefit customer) {
-        var data = CustomerBenefitDataConverter.toData(customer);
-        data.update("score = ?1, cashBack = ?2 where code = ?3", data.getScore(), data.getCashBack(), data.getCode());
-    }
 }

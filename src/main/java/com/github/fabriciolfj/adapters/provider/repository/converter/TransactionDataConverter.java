@@ -12,7 +12,7 @@ public class TransactionDataConverter {
                 .value(transaction.value())
                 .code(transaction.code())
                 .status(transaction.getDescribeStatus())
-                .dateRegistry(transaction.registration())
+                .dateRegistry(transaction.registration().toString())
                 .details(transaction.describe())
                 .payment(transaction.getDescribePayment())
                 .build();

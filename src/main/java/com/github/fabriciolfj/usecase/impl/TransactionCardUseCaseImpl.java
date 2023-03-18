@@ -1,10 +1,8 @@
 package com.github.fabriciolfj.usecase.impl;
 
 import com.github.fabriciolfj.entities.Transaction;
-import com.github.fabriciolfj.adapters.gateway.TransactionSaveGateway;
 import com.github.fabriciolfj.usecase.TransactionCreateUseCase;
 import com.github.fabriciolfj.usecase.TransactionProcessUseCase;
-import com.github.fabriciolfj.usecase.TransactionSaveUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

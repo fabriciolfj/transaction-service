@@ -16,4 +16,5 @@ public class CustomerBenefit {
     private String code;
     private Integer score;
     private BigDecimal cashBack;
+    private Integer version;
 }

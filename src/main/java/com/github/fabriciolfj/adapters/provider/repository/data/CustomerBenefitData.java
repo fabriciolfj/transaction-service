@@ -1,29 +1,38 @@
 package com.github.fabriciolfj.adapters.provider.repository.data;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
 
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity
-@Table(name = "customer")
-public class CustomerBenefitData extends PanacheEntity {
+@ApplicationScoped
+@DynamoDBTable(tableName = "customer")
+public class CustomerBenefitData {
 
     private String code;
     private Integer score;
-    @Column(name = "cash_back", nullable = false, unique = true)
     private BigDecimal cashBack;
-    @Version
-    private Integer version;
+
+    @DynamoDBHashKey(attributeName = "code")
+    public String getCode() {
+        return code;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public BigDecimal getCashBack() {
+        return cashBack;
+    }
 }

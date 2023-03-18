@@ -16,8 +16,6 @@ public class TransactionSaveUseCase {
 
     private final TransactionSaveGateway gateway;
     private final CustomerBenefitFindGateway customerGateway;
-    private final CustomerBenefitSaveGateway customerSave;
-    private final CustomerBenefitUpdateGateway customerUpdate;
 
     @Transactional(Transactional.TxType.REQUIRED)
     public Transaction execute(final Transaction transaction) {
@@ -28,11 +26,9 @@ public class TransactionSaveUseCase {
             var result = transaction.updateBenefit(customer.get());
 
             log.info("after update benefit score {}, cashback {}", result.getScore(), result.getCashBack());
-            customerUpdate.processUpdate(result.getCustomerBenefit());
             return gateway.process(result);
         }
 
-        customerSave.process(transaction.getCustomerBenefit());
         return gateway.process(transaction);
     }
 }

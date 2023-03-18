@@ -34,14 +34,6 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
         return this;
     }
 
-    public Integer getScore() {
-        return customer.getScore();
-    }
-
-    public BigDecimal getCashBack() {
-        return customer.getCashBack();
-    }
-
     public Transaction calcScore(final Integer value) {
         return updateScore(this.value
                 .divide(BigDecimal.valueOf(value))
@@ -58,5 +50,13 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
 
     public CustomerBenefit getCustomerBenefit() {
         return this.customer;
+    }
+
+    public Integer getScore() {
+        return customer.getScore();
+    }
+
+    public BigDecimal getCashBack() {
+        return customer.getCashBack();
     }
 }
