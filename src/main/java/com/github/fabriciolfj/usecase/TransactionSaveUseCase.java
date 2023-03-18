@@ -2,12 +2,9 @@ package com.github.fabriciolfj.usecase;
 
 import com.github.fabriciolfj.adapters.gateway.*;
 import com.github.fabriciolfj.entities.Transaction;
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -17,7 +14,6 @@ public class TransactionSaveUseCase {
     private final TransactionSaveGateway gateway;
     private final CustomerBenefitFindGateway customerGateway;
 
-    @Transactional(Transactional.TxType.REQUIRED)
     public Transaction execute(final Transaction transaction) {
         var customer = customerGateway.process(transaction.getCustomer());
 
