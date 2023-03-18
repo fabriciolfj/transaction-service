@@ -2,9 +2,7 @@ package com.github.fabriciolfj.adapters.provider.repository.data;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Builder;
-
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Builder
 @DynamoDBTable(tableName = "transaction")
