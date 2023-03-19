@@ -21,9 +21,8 @@ public class ProducerFraudMessage implements FraudServiceGateway {
 
     @Override
     public Transaction process(final Transaction transaction) {
-        var dto = TransactionFraudDtoConverter.toDto(transaction);
+        emitter.send(TransactionFraudDtoConverter.toDto(transaction));
 
-        emitter.send(dto);
         log.info("message send validate fraud to transaciton {}", transaction.code());
         return transaction;
     }
