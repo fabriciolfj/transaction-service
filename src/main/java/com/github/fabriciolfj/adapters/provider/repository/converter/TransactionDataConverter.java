@@ -1,7 +1,13 @@
 package com.github.fabriciolfj.adapters.provider.repository.converter;
 
+import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
 import com.github.fabriciolfj.entities.Transaction;
 import com.github.fabriciolfj.adapters.provider.repository.data.TransactionData;
+import com.github.fabriciolfj.entities.values.CustomerBenefit;
+import com.github.fabriciolfj.entities.values.PaymentEnum;
+import com.github.fabriciolfj.entities.values.StatusEnum;
+
+import java.time.LocalDateTime;
 
 public class TransactionDataConverter {
 
@@ -15,6 +21,12 @@ public class TransactionDataConverter {
                 .dateRegistry(transaction.registration().toString())
                 .details(transaction.describe())
                 .payment(transaction.getDescribePayment())
+                .customer(transaction.getCustomer())
                 .build();
+    }
+
+    public static Transaction toEntity(final TransactionData data) {
+        return new Transaction(data.getCode(), PaymentEnum.toEnum(data.getPayment()), StatusEnum.toEnum(data.getStatus()), data.getValue(),
+                data.getDetails(), LocalDateTime.parse(data.getDateRegistry()));
     }
 }

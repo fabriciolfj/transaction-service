@@ -2,20 +2,23 @@ package com.github.fabriciolfj.adapters.provider.repository.database;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.TransactionWriteRequest;
+import com.github.fabriciolfj.adapters.gateway.FindTransactionGateway;
 import com.github.fabriciolfj.adapters.gateway.TransactionSaveGateway;
 import com.github.fabriciolfj.adapters.provider.repository.converter.CustomerBenefitDataConverter;
 import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
 import com.github.fabriciolfj.adapters.provider.repository.data.TransactionData;
 import com.github.fabriciolfj.entities.Transaction;
+import com.github.fabriciolfj.exceptions.TransactionNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import static com.github.fabriciolfj.adapters.provider.repository.converter.TransactionDataConverter.toData;
+import static com.github.fabriciolfj.adapters.provider.repository.converter.TransactionDataConverter.toEntity;
 
 @Slf4j
 @ApplicationScoped
-public class TransactionDataBase implements TransactionSaveGateway {
+public class TransactionDataBase implements TransactionSaveGateway, FindTransactionGateway {
 
     @Inject
     private DynamoDBMapper dynamoDBMapper;
@@ -32,5 +35,16 @@ public class TransactionDataBase implements TransactionSaveGateway {
         dynamoDBMapper.transactionWrite(dynamodbTransaction);
         log.info("transaction save, to code {}", transaction.code());
         return transaction;
+    }
+
+    @Override
+    public Transaction process(final String code, final String status) {
+        try {
+            var data = dynamoDBMapper.load(TransactionData.class, code, status);
+            return toEntity(data);
+        } catch (Exception e) {
+            log.info("transacao nao encontrada para o code {}, detalhes: {}", code, e.getMessage());
+            throw new TransactionNotFoundException();
+        }
     }
 }
