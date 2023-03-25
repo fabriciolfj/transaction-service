@@ -1,6 +1,7 @@
 package com.github.fabriciolfj.adapters.provider.repository.data;
 
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
@@ -28,10 +29,12 @@ public class CustomerBenefitData {
         return code;
     }
 
+    @DynamoDBAttribute(attributeName = "score")
     public Integer getScore() {
         return score;
     }
 
+    @DynamoDBAttribute(attributeName = "cash_back")
     public BigDecimal getCashBack() {
         return cashBack;
     }
