@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.github.fabriciolfj.adapters.gateway.CustomerBenefitFindGateway;
 import com.github.fabriciolfj.adapters.provider.repository.converter.CustomerBenefitDataConverter;
 import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
+import com.github.fabriciolfj.entities.values.Customer;
 import lombok.extern.slf4j.Slf4j;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ public class CustomerBenefitDataBase implements CustomerBenefitFindGateway {
     private DynamoDBMapper dynamoDBMapper;
 
     @Override
-    public Optional<CustomerBenefit> process(final String code) {
+    public Optional<Customer> process(final String code) {
         try {
            return Optional.ofNullable(dynamoDBMapper.load(CustomerBenefitData.class, code))
                     .map(CustomerBenefitDataConverter::toEntity);

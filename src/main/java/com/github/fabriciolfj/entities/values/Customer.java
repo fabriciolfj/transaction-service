@@ -11,9 +11,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CustomerBenefit {
+public class Customer {
 
     private String code;
+    private String device;
     private Integer score;
     private BigDecimal cashBack;
 }

@@ -13,6 +13,7 @@ public class TransactionFraudDtoConverter {
                 .customer(entity.getCustomer())
                 .date(entity.registration())
                 .value(entity.value())
+                .device(entity.getDevice())
                 .build();
     }
 }

@@ -15,4 +15,5 @@ public class TransactionRequestDTO {
     private String describe;
     private String payment;
     private String customer;
+    private String device;
 }

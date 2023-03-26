@@ -1,10 +1,10 @@
 package com.github.fabriciolfj.adapters.gateway;
 
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
+import com.github.fabriciolfj.entities.values.Customer;
 
 import java.util.Optional;
 
 public interface CustomerBenefitFindGateway {
 
-    Optional<CustomerBenefit> process(final String code);
+    Optional<Customer> process(final String code);
 }

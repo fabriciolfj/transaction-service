@@ -1,6 +1,6 @@
 package com.github.fabriciolfj.entities;
 
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
+import com.github.fabriciolfj.entities.values.Customer;
 import com.github.fabriciolfj.entities.values.PaymentEnum;
 import com.github.fabriciolfj.entities.values.StatusEnum;
 
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record Transaction(String code, PaymentEnum payment, StatusEnum status, BigDecimal value, String describe,
-                          LocalDateTime registration, CustomerBenefit customer) {
+                          LocalDateTime registration, Customer customer) {
 
     public Transaction(final String code, final PaymentEnum payment, final StatusEnum status, final BigDecimal value, final String describe, final LocalDateTime registration) {
         this(code, payment, status, value, describe, registration, null);
@@ -22,7 +22,7 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
         return status.getDescribe();
     }
 
-    public Transaction updateBenefit(final CustomerBenefit customer) {
+    public Transaction updateBenefit(final Customer customer) {
         updateCashBack(customer.getCashBack());
         updateScore(customer.getScore());
 
@@ -53,7 +53,7 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
         return this.customer.getCode();
     }
 
-    public CustomerBenefit getCustomerBenefit() {
+    public Customer getCustomerBenefit() {
         return this.customer;
     }
 
@@ -63,5 +63,9 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
 
     public BigDecimal getCashBack() {
         return customer.getCashBack();
+    }
+
+    public String getDevice() {
+        return customer.getDevice();
     }
 }

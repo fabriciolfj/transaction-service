@@ -1,9 +1,7 @@
 package com.github.fabriciolfj.adapters.provider.repository.converter;
 
-import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
 import com.github.fabriciolfj.entities.Transaction;
 import com.github.fabriciolfj.adapters.provider.repository.data.TransactionData;
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
 import com.github.fabriciolfj.entities.values.PaymentEnum;
 import com.github.fabriciolfj.entities.values.StatusEnum;
 

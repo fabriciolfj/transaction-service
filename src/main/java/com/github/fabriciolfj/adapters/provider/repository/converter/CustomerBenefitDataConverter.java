@@ -1,7 +1,7 @@
 package com.github.fabriciolfj.adapters.provider.repository.converter;
 
 import com.github.fabriciolfj.adapters.provider.repository.data.CustomerBenefitData;
-import com.github.fabriciolfj.entities.values.CustomerBenefit;
+import com.github.fabriciolfj.entities.values.Customer;
 
 public class CustomerBenefitDataConverter {
 
@@ -9,17 +9,17 @@ public class CustomerBenefitDataConverter {
 
     }
 
-    public static CustomerBenefitData toData(final CustomerBenefit customerBenefit) {
+    public static CustomerBenefitData toData(final Customer customer) {
         return CustomerBenefitData
                 .builder()
-                .score(customerBenefit.getScore())
-                .code(customerBenefit.getCode())
-                .cashBack(customerBenefit.getCashBack())
+                .score(customer.getScore())
+                .code(customer.getCode())
+                .cashBack(customer.getCashBack())
                 .build();
     }
 
-    public static CustomerBenefit toEntity(final CustomerBenefitData data) {
-        return CustomerBenefit
+    public static Customer toEntity(final CustomerBenefitData data) {
+        return Customer
                 .builder()
                 .code(data.getCode())
                 .score(data.getScore())

@@ -38,4 +38,7 @@ public class CustomerBenefitData {
     public BigDecimal getCashBack() {
         return cashBack;
     }
+
+    @DynamoDBAttribute(attributeName = "device")
+    public String device;
 }
