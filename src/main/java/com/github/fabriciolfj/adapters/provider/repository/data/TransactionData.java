@@ -1,6 +1,7 @@
 package com.github.fabriciolfj.adapters.provider.repository.data;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.github.fabriciolfj.entities.values.StatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;

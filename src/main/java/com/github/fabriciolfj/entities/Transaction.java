@@ -68,4 +68,8 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
     public String getDevice() {
         return customer.getDevice();
     }
+
+    public Transaction updateStatus(final StatusEnum status) {
+        return new Transaction(this.code, this.payment, this.status, this.value, this.describe, this.registration, this.customer);
+    }
 }

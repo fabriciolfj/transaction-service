@@ -7,7 +7,8 @@ public enum Errors {
     ERROR_BUSINESS,
     TYPE_PAYMENT_NOTFOUND,
     TRANSACTION_ZERO,
-    TRANSACTION_NOTFOUND;
+    TRANSACTION_NOTFOUND,
+    TRANSACTION_UPDATE;
 
     public String toMessage() {
         var bundle = ResourceBundle.getBundle("messages/exceptions");
