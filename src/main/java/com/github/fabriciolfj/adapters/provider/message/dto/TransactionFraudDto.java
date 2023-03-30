@@ -18,5 +18,4 @@ public class TransactionFraudDto {
     private String transaction;
     private BigDecimal value;
     private LocalDateTime date;
-    private String device;
 }

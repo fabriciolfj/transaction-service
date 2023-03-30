@@ -35,7 +35,7 @@ public class TransactionDTOConvert {
 
     private static Customer toCustomer(TransactionRequestDTO dto) {
         var customer = Customer.builder().code(dto.getCustomer()).cashBack(BigDecimal.ZERO).score(ZERO_SCORE)
-                .device(dto.getDevice()).build();
+                .build();
         return customer;
     }
 

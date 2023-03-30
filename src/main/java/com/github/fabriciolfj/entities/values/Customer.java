@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 public class Customer {
 
     private String code;
-    private String device;
     private Integer score;
     private BigDecimal cashBack;
 }
