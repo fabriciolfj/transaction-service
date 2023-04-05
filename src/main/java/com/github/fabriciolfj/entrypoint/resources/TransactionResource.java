@@ -2,6 +2,7 @@ package com.github.fabriciolfj.entrypoint.resources;
 
 import com.github.fabriciolfj.adapters.controllers.TransactionController;
 import com.github.fabriciolfj.adapters.controllers.TransactionFindController;
+import com.github.fabriciolfj.adapters.controllers.TransactionUpdateController;
 import com.github.fabriciolfj.entities.values.StatusEnum;
 import com.github.fabriciolfj.entrypoint.resources.convert.TransactionDTOConvert;
 import com.github.fabriciolfj.entrypoint.resources.convert.TransactionFindResponseDTOConvert;
@@ -21,6 +22,7 @@ public class TransactionResource {
 
     private final TransactionController controller;
     private final TransactionFindController findController;
+    private final TransactionUpdateController updateController;
 
     @POST
     public Response process(final TransactionRequestDTO dto) {
@@ -38,6 +40,15 @@ public class TransactionResource {
         final var transaction = findController.process(code, StatusEnum.toEnum(status));
 
         return Response.accepted().entity(TransactionFindResponseDTOConvert.toDTO(transaction)).build();
+    }
+
+    @PUT
+    @Path("/{code}/{status}")
+    public Response updateTransaction(@PathParam("code") final String code, @PathParam("status") final String status) {
+        log.info("request received {}, {}", code, status);
+        updateController.process(code, status);
+
+        return Response.noContent().build();
     }
 
 }

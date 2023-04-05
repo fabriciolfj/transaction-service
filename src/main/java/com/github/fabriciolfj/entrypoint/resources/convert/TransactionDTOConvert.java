@@ -7,6 +7,7 @@ import com.github.fabriciolfj.entities.values.StatusEnum;
 import com.github.fabriciolfj.entrypoint.resources.dto.TransactionRequestDTO;
 import com.github.fabriciolfj.entrypoint.resources.dto.TransactionResponseDTO;
 import com.github.fabriciolfj.exceptions.TransactionValueZeroException;
+import com.github.fabriciolfj.util.DateFormatedUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public class TransactionDTOConvert {
                 StatusEnum.PENDING,
                 dto.getValue(),
                 dto.getDescribe(),
-                LocalDateTime.now(),
+                DateFormatedUtil.toDateIso(),
                 toCustomer(dto));
     }
 

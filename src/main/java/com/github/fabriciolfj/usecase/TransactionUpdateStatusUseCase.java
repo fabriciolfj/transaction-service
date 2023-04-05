@@ -17,8 +17,7 @@ public class TransactionUpdateStatusUseCase {
     private final TransactionUpdateGateway updateGateway;
 
     public void execute(final String code, final StatusEnum statusEnum) {
-        log.info("update transaction code {}, to status", code, statusEnum.getDescribe());
-        final var transaction = findUseCase.process(code, StatusEnum.APPROVED.getDescribe());
+        final var transaction = findUseCase.process(code, StatusEnum.PENDING.getDescribe());
 
         final var result = transaction.updateStatus(statusEnum);
         updateGateway.processUpdate(result);
