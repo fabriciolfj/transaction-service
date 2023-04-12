@@ -55,7 +55,7 @@ public class TransactionDataBase implements TransactionSaveGateway, FindTransact
         try {
             dynamoDBMapper.save(toData(transaction));
         } catch (Exception e) {
-            log.info("falha ao atualizar a transacao code {} para o status, detalhes: {}", transaction.code(), transaction.status().getDescribe(), e.getMessage());
+            log.info("falha ao atualizar a transacao code {} para o status {}, detalhes: {}", transaction.code(), transaction.status().getDescribe(), e.getMessage());
             throw new TransactionUpdateException();
         }
     }

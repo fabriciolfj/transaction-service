@@ -21,6 +21,6 @@ public class TransactionUpdateStatusUseCase {
 
         final var result = transaction.updateStatus(statusEnum);
         updateGateway.processUpdate(result);
-        log.info("update success transactiom {}, to status {}", code, statusEnum.getDescribe());
+        log.info("update success transaction {}, to status {}", code, statusEnum.getDescribe());
     }
 }

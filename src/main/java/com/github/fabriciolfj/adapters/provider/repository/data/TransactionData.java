@@ -80,6 +80,10 @@ public class TransactionData  {
         this.customer = customer;
     }
 
+    public String getCustomer() {
+        return customer;
+    }
+
     @Override
     public String toString() {
         return "TransactionData{" +

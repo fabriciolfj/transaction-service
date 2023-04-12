@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,5 +16,5 @@ public class TransactionFraudDto {
     private String customer;
     private String transaction;
     private BigDecimal value;
-    private LocalDateTime date;
+    private String date;
 }

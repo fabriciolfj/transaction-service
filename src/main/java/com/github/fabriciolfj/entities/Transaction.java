@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record Transaction(String code, PaymentEnum payment, StatusEnum status, BigDecimal value, String describe,
-                          LocalDateTime registration, Customer customer) {
+                          String registration, Customer customer) {
 
-    public Transaction(final String code, final PaymentEnum payment, final StatusEnum status, final BigDecimal value, final String describe, final LocalDateTime registration) {
+    public Transaction(final String code, final PaymentEnum payment, final StatusEnum status, final BigDecimal value, final String describe, final String registration) {
         this(code, payment, status, value, describe, registration, null);
     }
 
@@ -66,6 +66,6 @@ public record Transaction(String code, PaymentEnum payment, StatusEnum status, B
     }
 
     public Transaction updateStatus(final StatusEnum status) {
-        return new Transaction(this.code, this.payment, this.status, this.value, this.describe, this.registration, this.customer);
+        return new Transaction(this.code, this.payment, status, this.value, this.describe, this.registration, this.customer);
     }
 }
