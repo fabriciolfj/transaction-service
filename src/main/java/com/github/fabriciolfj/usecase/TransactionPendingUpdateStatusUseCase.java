@@ -11,7 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 @RequiredArgsConstructor
 @Slf4j
-public class TransactionUpdateStatusUseCase {
+public class TransactionPendingUpdateStatusUseCase {
 
     private final FindTransactionGateway findUseCase;
     private final TransactionUpdateGateway updateGateway;

@@ -5,6 +5,7 @@ import com.github.fabriciolfj.usecase.TransactionCreateUseCase;
 import com.github.fabriciolfj.usecase.TransactionProcessUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.math.BigDecimal;
@@ -14,14 +15,15 @@ import java.math.BigDecimal;
 @ApplicationScoped
 public class TransactionCardUseCaseImpl implements TransactionCreateUseCase {
 
-    private static final BigDecimal INDEX_CALC = BigDecimal.valueOf(1.88);
+    @ConfigProperty(name = "calc.cartao")
+    private BigDecimal indexCalc;
 
     private final TransactionProcessUseCase transactionProcessUseCase;
 
     @Override
     public Transaction execute(final Transaction transaction) {
         log.info("transaction card create started, to code {}", transaction.code());
-        var result = transaction.calcCashBack(INDEX_CALC);
+        var result = transaction.calcCashBack(indexCalc);
 
         return transactionProcessUseCase.execute(result);
     }
