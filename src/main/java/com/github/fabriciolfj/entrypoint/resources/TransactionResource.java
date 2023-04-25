@@ -9,6 +9,8 @@ import com.github.fabriciolfj.entrypoint.resources.convert.TransactionFindRespon
 import com.github.fabriciolfj.entrypoint.resources.dto.TransactionRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -25,7 +27,7 @@ public class TransactionResource {
     private final TransactionUpdateController updateController;
 
     @POST
-    public Response process(final TransactionRequestDTO dto) {
+    public Response process(@Valid final TransactionRequestDTO dto) {
         log.info("request received {}", dto);
         var entity = TransactionDTOConvert.toEntity(dto);
         return Response.accepted(TransactionDTOConvert
