@@ -1,0 +1,1 @@
+kubectl k port-forward svc/localstack 4566:4566 -n localstack

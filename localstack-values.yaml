@@ -1,0 +1,6 @@
+localstack:
+  enabled: true
+  installDefaultAwsApiKeys: true
+  services:
+    dynamodb:
+      enabled: true

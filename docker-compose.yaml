@@ -24,14 +24,6 @@ services:
       - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
-  postgres:
-    image: debezium/example-postgres
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-    ports:
-      - "5432:5432"
-
   zookeeper:
     image: zookeeper:3.6.1
     container_name: zookeeper
