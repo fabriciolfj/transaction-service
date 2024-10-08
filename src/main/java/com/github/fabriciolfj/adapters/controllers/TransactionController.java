@@ -19,7 +19,7 @@ public class TransactionController {
                 .filter(t -> isPaymentPresent(entity, t))
                 .map(v -> v.execute(entity))
                 .findFirst()
-                .orElseThrow(() -> new TypePaymentNotFoundException());
+                .orElseThrow(TypePaymentNotFoundException::new);
     }
 
     private static boolean isPaymentPresent(Transaction entity, TransactionCreateUseCase t) {
